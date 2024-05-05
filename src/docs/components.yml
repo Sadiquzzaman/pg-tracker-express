@@ -1,0 +1,204 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        designation:
+          type: string
+        role:
+          type: string
+          enum: [user, admin]
+      example:
+        id: 5ebac534954b54139806c112
+        email: fake@example.com
+        name: fake name
+        role: user
+
+    Workspace:
+      type: object
+      required: [name]
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+        members:
+          type: array
+        status:
+          type: string
+          enum: [active, inactive]
+      example:
+        id: 5ebac534954b54139806c112
+        type: software xyz
+        description: random description about workspace
+        name: some workspace name
+        members: []
+        status: active
+
+    RoleManagement:
+      type: object
+      properties:
+        id:
+          type: string
+        users:
+          type: object
+        workspaces:
+          type: array
+        trackers:
+          type: array
+
+      example:
+        id: 5ebac534954b54139806c112
+        users: {}
+        workspaces: []
+        trackers: []
+
+    Tracker:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        workspace:
+          type: object
+        status:
+          type: string
+          enum: [active, inactive]
+      example:
+        id: 5ebac534954b54139806c112
+        name: fake@example.com
+        description: fake name
+        workspace: {}
+        status: active
+
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        workspace:
+          type: object
+        members:
+          type: array
+        status:
+          type: string
+          enum: [active, inactive]
+      example:
+        id: 5ebac534954b54139806c112
+        desription: fake@example.com
+        name: fake name
+        status: active
+        workspace: {}
+
+    Invitation:
+      type: object
+      properties:
+        id:
+          type: string
+        workspace:
+          type: object
+        tracker:
+          type: object
+        member:
+          type: object
+        invited_by:
+          type: object
+        status:
+          type: string
+          enum: [accepted, rejected, pending]
+      example:
+        id: 5ebac534954b54139806c112
+        workspace: {}
+        member: {}
+        invited_by: {}
+        active: pending
+
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+        expires:
+          type: string
+          format: date-time
+      example:
+        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZWJhYzUzNDk1NGI1NDEzOTgwNmMxMTIiLCJpYXQiOjE1ODkyOTg0ODQsImV4cCI6MTU4OTMwMDI4NH0.m1U63blB0MLej_WfB7yC2FTMnCziif9X8yzwDEfJXAg
+        expires: 2020-05-12T16:18:04.793Z
+
+    AuthTokens:
+      type: object
+      properties:
+        access:
+          $ref: "#/components/schemas/Token"
+        refresh:
+          $ref: "#/components/schemas/Token"
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+
+  responses:
+    DuplicateEmail:
+      description: Email already taken
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            code: 400
+            message: Email already taken
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            code: 401
+            message: Please authenticate
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            code: 403
+            message: Forbidden
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            code: 404
+            message: Not found
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

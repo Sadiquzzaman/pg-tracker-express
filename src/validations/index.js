@@ -1,0 +1,10 @@
+module.exports.authValidation = require("../validations/auth/auth.validation");
+module.exports.userValidation = require("../validations/user/user.validation");
+module.exports.workspaceValidation = require("../validations/feature/workspace.validation");
+module.exports.memberValidation = require("../validations/user/member.validation");
+module.exports.invitationValidation = require("../validations/feature/invitation.validation");
+module.exports.trackerValidation = require("../validations/feature/tracker.validation");
+module.exports.teamValidation = require("../validations/feature/team.validation");
+module.exports.commentValidation = require("../validations/feature/comment.validation");
+module.exports.rolemanagement = require("../validations/auth/roleManagement.validation");
+module.exports.subTask = require("../validations/feature/subTask.validation");

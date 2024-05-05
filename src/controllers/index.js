@@ -1,0 +1,11 @@
+module.exports.authController = require("./auth/auth.controller");
+module.exports.userController = require("./user/user.controller");
+module.exports.workspaceController = require("./features/workspace.controller");
+module.exports.memberController = require("./user/member.controller");
+module.exports.invitationController = require("./features/invitation.controller");
+module.exports.trackerController = require("./features/tracker.controller");
+module.exports.teamController = require("./features/team.controller");
+module.exports.commentController = require("./features/comment.controller");
+module.exports.milestoneController = require("./features/milestone.controller");
+module.exports.roleManagementController = require("./auth/roleManagement.controller");
+module.exports.subTaskController = require("./features/subTask.controller");

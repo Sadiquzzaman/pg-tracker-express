@@ -1,0 +1,11 @@
+module.exports.User = require("./user/user.model");
+module.exports.Workspace = require("./features/workspace.model");
+module.exports.Member = require("./user/member.model");
+module.exports.Invitation = require("./features/invitation.model");
+module.exports.Tracker = require("./features/tracker.model");
+module.exports.Team = require("./features/team.model");
+module.exports.Comment = require("./features/comment.model");
+module.exports.Milestone = require("./features/milestone.model");
+module.exports.RoleManagement = require("./auth/roleManagement.model");
+module.exports.SubTask = require("./features/subTask.model");
+module.exports.Token = require("./auth/token.model");
